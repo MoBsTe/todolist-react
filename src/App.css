@@ -97,7 +97,7 @@ h1 {
     cursor: pointer;
 }
 
-.seperator {
+hr {
     height: 1px;
     width: 80%;
     align-self: center;
@@ -110,4 +110,25 @@ h1 {
 
 svg {
     margin-left: 15px;
+}
+
+.buttons{
+    margin-bottom: 10px;
+}
+
+.buttons button{
+    width: 90px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin: 0px 5px;
+    cursor: pointer;
+    outline: none;
+    background: linear-gradient(90deg,
+            rgba(17, 122, 255, 1) 0%,
+            rgba(20, 159, 255, 1) 100%);
+    color: white;
+    text-transform: capitalize;
+
+
 }
