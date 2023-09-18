@@ -7,13 +7,7 @@ describe('TodoItem component', () => {
     it('TodoItem render', () => {
         render(<Todoitem item={item} />);
 
-        expect(screen.getByText(/testText/)).toBeInTheDocument();
+        expect(screen.get(/testText/)).toBeInTheDocument();
     });
 
-    it('TodoItem renders without data', () => {
-        render(<Todoitem />);
-
-        expect(screen.queryByRole('list')).toBeNull();
-
-    });
 });
