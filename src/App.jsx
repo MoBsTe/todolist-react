@@ -5,17 +5,26 @@ import Todoitem from './components/Todoitem';
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState('all'); // Добавляем состояние для фильтрации
+  const [filter, setFilter] = useState('all');
 
   const addTodo = (text) => {
-    let id = 1;
-    if (todos.length > 0) {
-      id = todos[0].id + 1;
+    let newTodos;
+    
+    if (Array.isArray(text)) {
+      newTodos = text.map((task, index) => ({
+        id: todos.length > 0 ? todos[0].id + index + 1 : index + 1,
+        text: task,
+        completed: false,
+        important: false,
+      }));
+      setTodos([...newTodos, ...todos]);
+    } else {
+      const id = todos.length > 0 ? todos[0].id + 1 : 1;
+      const todo = { id, text, completed: false, important: false };
+      setTodos([todo, ...todos]);
     }
-    let todo = { id: id, text: text, completed: false, important: false };
-    let newTodos = [todo, ...todos];
-    setTodos(newTodos);
   };
+  
 
   const removeTodo = (id) => {
     let updatedTodos = [...todos].filter((todo) => todo.id !== id);

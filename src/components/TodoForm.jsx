@@ -1,14 +1,31 @@
 import React, { useState } from "react";
 
-const TodoForm = (props) => {
+const TodoForm = ({ addTodo }) => {
     const [input, setInput] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        props.addTodo(input)
-        setInput("")
-    }
 
+    const saunaTasks = [
+        "Купить веники",
+        "Приготовить еду",
+        "Взять полотенца",
+        "Запастись водой",
+        "Уточнить время с друзьями",
+    ];
+
+    const data = ['баня', 'баню']
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        if (data.some(word => input.toLowerCase().includes(word))) {
+            const saunaTasksWithLabel = saunaTasks.map(task => `${task}`);
+            addTodo(saunaTasksWithLabel);
+        } else if (input.trim()) {
+            addTodo(input.trim());
+        }
+    
+        setInput("");
+    };
+    
 
     return (
         <form onSubmit={handleSubmit} className="todo-form">
@@ -16,11 +33,11 @@ const TodoForm = (props) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="todo-input"
-                placeholder="Add a todo"
+                placeholder="Введите задачу"
             />
-            <button type="submit" className="todo-button">Add Todo</button>
+            <button type="submit" className="todo-button">Добавить задачу</button>
         </form>
     );
-}
+};
 
 export default TodoForm;
