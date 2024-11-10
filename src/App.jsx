@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import PersistItem from './components/PersistItem';
 import TodoForm from './components/TodoForm';
 import Todoitem from './components/Todoitem';
 
@@ -51,20 +53,25 @@ function App() {
   });
 
   return (
+    <div className='main'>
+      <Header/>
     <div className="todo-app">
       <h1>Todo List</h1>
       <TodoForm addTodo={addTodo} />
       <div className='buttons'>
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('active')}>Active</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
+      <button onClick={() => setFilter('all')}>All</button>
+      <button onClick={() => setFilter('active')}>Active</button>
+      <button onClick={() => setFilter('completed')}>Completed</button>
       </div>
-
+      
       <hr />
+      <PersistItem/>
       {filteredTodos.map((item) => (
         <Todoitem item={item} key={item.id} removeTodo={removeTodo} completeTodo={completeTodo} />
-      ))}
+        ))}
     </div>
+        
+        </div>
   );
 }
 
